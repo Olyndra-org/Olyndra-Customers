@@ -11,7 +11,7 @@ import {
 } from "lucide-react";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
-import PartnerForm from "@/components/partner-form";
+import { PartnerForm } from "@/components/partner-form";
 
 const stats = [
   { value: "Minutes", label: "From bank data to decision" },
