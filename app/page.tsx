@@ -229,6 +229,7 @@ export default function Home() {
       </section>
 
       {/* Team */}
+      {/*
       <section id="team" className="scroll-mt-20">
         <div className="mx-auto max-w-6xl px-6 py-20 md:py-28 lg:px-8">
           <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
@@ -264,7 +265,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-
+*/}
       <Footer />
     </main>
   );
