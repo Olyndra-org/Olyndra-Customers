@@ -1,57 +1,46 @@
 import Link from "next/link";
-import { Logo } from "./logo";
+import { Wordmark } from "./wordmark";
 
 export function Footer() {
   return (
-    <footer className="border-t border-border bg-muted/30">
-      <div className="mx-auto max-w-7xl px-6 py-12 lg:px-8">
-        <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
-          <Logo />
-          <div className="flex items-center gap-6">
-            <Link
-              href="/sign-in"
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-            >
-              Customer sign in
-            </Link>
-            <a
-              href="mailto:contact@olyndra.ai"
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-            >
-              contact@olyndra.ai
-            </a>
+    <footer className="bg-ink text-bone">
+      <div className="mx-auto max-w-6xl px-6 py-14 lg:px-8">
+        <div className="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
+          <div>
+            <Wordmark onDark />
+            <p className="mt-6 max-w-sm text-sm leading-relaxed text-moss">
+              Short-term loans for UK limited companies and LLPs, decided in
+              real time from the business&apos;s own bank data.
+            </p>
+          </div>
+          <div>
+            <p className="eyebrow text-moss">Site</p>
+            <ul className="mt-4 space-y-2 text-sm">
+              <li><Link href="/#how" className="hover:text-amber">How it works</Link></li>
+              <li><Link href="/#terms" className="hover:text-amber">Terms we offer</Link></li>
+              <li><Link href="/#brokers" className="hover:text-amber">For brokers</Link></li>
+              <li><Link href="/#team" className="hover:text-amber">Team</Link></li>
+              <li><Link href="/sign-in" className="hover:text-amber">Customer sign in</Link></li>
+            </ul>
+          </div>
+          <div>
+            <p className="eyebrow text-moss">Contact</p>
+            <ul className="mt-4 space-y-2 text-sm">
+              <li><a href="mailto:contact@olyndra.ai" className="hover:text-amber">contact@olyndra.ai</a></li>
+              <li className="text-moss">124-128 City Road<br />London EC1V 2NX</li>
+            </ul>
           </div>
         </div>
-        <div className="mt-8 border-t border-border pt-8">
-          <div className="flex flex-col items-center gap-4">
-            <div className="flex items-center gap-4">
-              <a
-                href="https://www.olyndra.ai/privacy"
-                className="text-xs text-muted-foreground hover:text-foreground transition-colors"
-              >
-                Privacy Policy
-              </a>
-              <span className="text-muted-foreground/50">|</span>
-              <a
-                href="https://www.olyndra.ai/terms"
-                className="text-xs text-muted-foreground hover:text-foreground transition-colors"
-              >
-                Terms of Service
-              </a>
-            </div>
-            <p className="text-xs text-muted-foreground text-center leading-relaxed">
-              Olyndra Ltd | Registered in England and Wales | Company Number:
-              17171970 | Registered Office: 124-128 City Road, London, EC1V 2NX
-            </p>
-            <p className="text-xs text-muted-foreground text-center leading-relaxed max-w-2xl">
-              Lending to limited companies and LLPs only. Olyndra does not offer
-              consumer credit. New customers are currently accepted through our
-              partner brokers.
-            </p>
-            <p className="text-xs text-muted-foreground">
-              © {new Date().getFullYear()} Olyndra. All rights reserved.
-            </p>
-          </div>
+        <div className="mt-12 border-t border-line-forest pt-6 font-mono text-xs leading-relaxed text-moss">
+          <p>
+            Olyndra Ltd · Registered in England and Wales · Company no. 17171970 ·
+            Registered office 124-128 City Road, London EC1V 2NX.
+          </p>
+          <p className="mt-2">
+            Lending to limited companies and LLPs only. We do not offer consumer
+            credit. New customers are currently accepted through partner brokers.
+          </p>
+          <p className="mt-2">© {new Date().getFullYear()} Olyndra Ltd</p>
         </div>
       </div>
     </footer>

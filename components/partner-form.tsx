@@ -6,13 +6,13 @@ import { useState } from "react";
 // separate one for olyndra.com.
 const WEB3FORMS_ACCESS_KEY = "aaea8fcf-7152-4f73-96ca-d2a8f539fcca";
 
-const inputClass =
-  "w-full rounded-xl border border-input bg-background px-5 py-4 text-base placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent transition-all";
+const field =
+  "w-full border border-line bg-bone px-4 py-3 text-base text-ink placeholder:text-ink-2/70 focus:border-ink focus:outline-none focus:ring-2 focus:ring-amber";
+
+const label = "eyebrow mb-2 block text-ink-2";
 
 export function PartnerForm() {
-  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
-    "idle"
-  );
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -25,7 +25,7 @@ export function PartnerForm() {
         body: JSON.stringify({
           access_key: WEB3FORMS_ACCESS_KEY,
           subject: "New broker partnership enquiry (olyndra.com)",
-          from_name: "Olyndra.com broker form",
+          from_name: "Olyndra Lending broker form",
           ...Object.fromEntries(new FormData(form).entries()),
         }),
       });
@@ -39,45 +39,56 @@ export function PartnerForm() {
 
   if (status === "sent") {
     return (
-      <div className="mt-8 rounded-2xl bg-primary/10 p-6 text-center">
-        <p className="text-lg font-semibold text-foreground">Thanks. We have your details.</p>
-        <p className="mt-2 text-muted-foreground">
-          One of the founders will come back to you directly.
-        </p>
+      <div className="border border-ink bg-bone p-6">
+        <p className="font-display text-2xl text-ink">Thanks. We have your details.</p>
+        <p className="mt-2 text-ink-2">One of the founders will come back to you directly.</p>
       </div>
     );
   }
 
   return (
-    <form className="mt-8" onSubmit={onSubmit}>
-      <div className="grid gap-4 sm:grid-cols-2">
-        <input id="firm" name="firm" type="text" placeholder="Brokerage name" required className={inputClass} />
-        <input id="name" name="name" type="text" placeholder="Your name" required className={inputClass} />
-        <input id="email" name="email" type="email" placeholder="Work email" required className={inputClass} />
-        <input id="phone" name="phone" type="tel" placeholder="Phone (optional)" className={inputClass} />
+    <form onSubmit={onSubmit} className="grid gap-5">
+      <div className="grid gap-5 sm:grid-cols-2">
+        <div>
+          <label htmlFor="firm" className={label}>Brokerage</label>
+          <input id="firm" name="firm" type="text" required className={field} />
+        </div>
+        <div>
+          <label htmlFor="name" className={label}>Your name</label>
+          <input id="name" name="name" type="text" required className={field} />
+        </div>
+        <div>
+          <label htmlFor="email" className={label}>Work email</label>
+          <input id="email" name="email" type="email" required className={field} />
+        </div>
+        <div>
+          <label htmlFor="phone" className={label}>Phone (optional)</label>
+          <input id="phone" name="phone" type="tel" className={field} />
+        </div>
       </div>
-      <textarea
-        id="message"
-        name="message"
-        rows={3}
-        placeholder="The clients you typically place: sector, loan size, how many a month"
-        className={`${inputClass} mt-4 resize-none`}
-      />
+      <div>
+        <label htmlFor="message" className={label}>The clients you typically place</label>
+        <textarea
+          id="message"
+          name="message"
+          rows={3}
+          placeholder="Sector, loan size, roughly how many a month"
+          className={`${field} resize-none`}
+        />
+      </div>
       <button
         type="submit"
         disabled={status === "sending"}
-        className="mt-4 w-full rounded-xl bg-primary px-8 py-4 text-base font-semibold text-primary-foreground shadow-lg shadow-primary/25 hover:opacity-90 disabled:opacity-70 disabled:cursor-not-allowed transition-all hover:shadow-xl hover:shadow-primary/30"
+        className="bg-amber px-6 py-3 text-base font-semibold text-ink transition-colors hover:bg-amber-2 disabled:cursor-not-allowed disabled:opacity-70"
       >
         {status === "sending" ? "Sending…" : "Request a partner conversation"}
       </button>
       {status === "error" && (
-        <p className="mt-4 text-center text-sm text-destructive">
+        <p className="text-sm text-ink">
           That didn&apos;t send. Email us instead at contact@olyndra.ai.
         </p>
       )}
-      <p className="mt-4 text-center text-sm text-muted-foreground">
-        No spam, ever. We respect your privacy.
-      </p>
+      <p className="font-mono text-xs text-ink-2">No newsletters. We reply to every broker enquiry.</p>
     </form>
   );
 }

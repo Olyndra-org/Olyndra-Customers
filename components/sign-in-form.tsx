@@ -3,49 +3,21 @@
 // Placeholder sign-in: collects a customer ID and password and does nothing
 // with them. Wire this to the real customer portal when it exists.
 
-const inputClass =
-  "w-full rounded-xl border border-input bg-background px-5 py-4 text-base placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent transition-all";
+const field =
+  "w-full border border-line bg-bone px-4 py-3 text-base text-ink placeholder:text-ink-2/70 focus:border-ink focus:outline-none focus:ring-2 focus:ring-amber";
 
 export function SignInForm() {
   return (
-    <form
-      className="mt-8 flex flex-col gap-4"
-      onSubmit={(e) => {
-        e.preventDefault();
-      }}
-    >
+    <form className="grid gap-5" onSubmit={(e) => e.preventDefault()}>
       <div>
-        <label htmlFor="customer-id" className="mb-2 block text-sm font-medium text-foreground">
-          Customer ID
-        </label>
-        <input
-          id="customer-id"
-          name="customerId"
-          type="text"
-          autoComplete="username"
-          placeholder="e.g. OLY-00123"
-          required
-          className={inputClass}
-        />
+        <label htmlFor="customer-id" className="eyebrow mb-2 block text-ink-2">Customer ID</label>
+        <input id="customer-id" name="customerId" type="text" autoComplete="username" placeholder="e.g. OLY-00123" required className={field} />
       </div>
       <div>
-        <label htmlFor="password" className="mb-2 block text-sm font-medium text-foreground">
-          Password
-        </label>
-        <input
-          id="password"
-          name="password"
-          type="password"
-          autoComplete="current-password"
-          placeholder="Your password"
-          required
-          className={inputClass}
-        />
+        <label htmlFor="password" className="eyebrow mb-2 block text-ink-2">Password</label>
+        <input id="password" name="password" type="password" autoComplete="current-password" required className={field} />
       </div>
-      <button
-        type="submit"
-        className="mt-2 w-full rounded-xl bg-primary px-8 py-4 text-base font-semibold text-primary-foreground shadow-lg shadow-primary/25 hover:opacity-90 transition-all hover:shadow-xl hover:shadow-primary/30"
-      >
+      <button type="submit" className="mt-1 bg-ink px-6 py-3 text-base font-semibold text-bone transition-colors hover:bg-forest">
         Sign in
       </button>
     </form>

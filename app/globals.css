@@ -1,62 +1,55 @@
 @import "tailwindcss";
 
-/* Same design tokens as olyndra.ai (shadcn-style, Tailwind v4) */
+/*
+  Olyndra lending — its own identity, separate from olyndra.ai.
+  Layout: left-aligned editorial grid, full-bleed forest bands, ledger-style tables.
+*/
 :root {
-  --background: #fbfcfd;
-  --foreground: #050c13;
-  --card: #ffffff;
-  --card-foreground: #050c13;
-  --popover: #ffffff;
-  --popover-foreground: #050c13;
-  --primary: #0559d2;
-  --primary-foreground: #fcfcfc;
-  --secondary: #ecf3f8;
-  --secondary-foreground: #050c13;
-  --muted: #ecf3f8;
-  --muted-foreground: #5b646f;
-  --accent: #0766ee;
-  --accent-foreground: #fcfcfc;
-  --destructive: #e40014;
-  --destructive-foreground: #e40014;
-  --border: #dfe6eb;
-  --input: #dfe6eb;
-  --ring: #0559d2;
-  --radius: 0.75rem;
+  --bone: #f3efe6;        /* page ground */
+  --bone-2: #e9e3d6;      /* alternate ground / rules on bone */
+  --ink: #15201b;         /* text */
+  --ink-2: #4b5a52;       /* secondary text */
+  --forest: #0f3b2e;      /* dominant brand colour */
+  --forest-2: #164b3b;    /* hover / raised on forest */
+  --moss: #a9c4b4;        /* text on forest */
+  --amber: #e8a33d;       /* the one accent */
+  --amber-2: #c9881f;
+  --line: #d8d1c2;        /* hairlines on bone */
+  --line-forest: #235846; /* hairlines on forest */
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --color-bone: var(--bone);
+  --color-bone-2: var(--bone-2);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-forest: var(--forest);
+  --color-forest-2: var(--forest-2);
+  --color-moss: var(--moss);
+  --color-amber: var(--amber);
+  --color-amber-2: var(--amber-2);
+  --color-line: var(--line);
+  --color-line-forest: var(--line-forest);
+  --font-display: var(--font-instrument-serif), Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-plex-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --radius-none: 0;
 }
 
 @layer base {
-  * {
-    @apply border-border outline-ring/50;
+  html { scroll-behavior: smooth; }
+  body { @apply bg-bone text-ink font-sans antialiased; }
+  h1, h2, h3 { text-wrap: balance; }
+  ::selection { background: var(--amber); color: var(--ink); }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation: none !important; transition: none !important; }
   }
-  body {
-    @apply bg-background text-foreground;
-  }
+}
+
+@utility eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
 }

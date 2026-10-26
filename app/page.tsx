@@ -1,92 +1,75 @@
 import Link from "next/link";
-import {
-  Landmark,
-  Zap,
-  Banknote,
-  Check,
-  Linkedin,
-  Handshake,
-  ListChecks,
-  FileText,
-} from "lucide-react";
-import { Header } from "@/components/header";
+import { Topbar } from "@/components/topbar";
 import { Footer } from "@/components/footer";
+import { DecisionTicket } from "@/components/decision-ticket";
 import { PartnerForm } from "@/components/partner-form";
 
-const stats = [
-  { value: "Minutes", label: "From bank data to decision" },
-  { value: "Fixed", label: "Rate for the whole term" },
-  { value: "£150", label: "Flat arrangement fee" },
-  { value: "£0", label: "Early-repayment fee" },
+const facts = [
+  "Decision in minutes",
+  "Fixed rate for the term",
+  "£150 flat fee",
+  "£0 early-repayment fee",
+  "Ltd & LLP only",
+  "Partner brokers only",
 ];
 
 const steps = [
   {
-    icon: Landmark,
-    title: "1. Connect the bank account",
-    body: "Your client links their business bank account through open banking. No PDFs, no spreadsheets, no forms they have already filled in elsewhere.",
+    n: "01",
+    title: "Connect the bank account",
+    body: "Your client links the business's bank account through open banking. No PDFs, no spreadsheets, no re-keying of forms they have already filled in elsewhere.",
   },
   {
-    icon: Zap,
-    title: "2. Real-time decision",
-    body: "Our agents read the cash flow and decide in minutes. Amount, rate and term on one screen, with the reasoning shown, not hidden.",
+    n: "02",
+    title: "We read it, and decide",
+    body: "Our agents read the cash flow and run the company and director checks. The answer, with the amount, term and rate, comes back in minutes, with the reasoning shown.",
   },
   {
-    icon: Banknote,
-    title: "3. Sign and draw down",
-    body: "A plain-English agreement, signed online. Funds are released once it is signed. Fixed rate for the term and no fee to repay early.",
+    n: "03",
+    title: "Sign, then draw down",
+    body: "A short agreement in plain English, signed online. Funds are released once it is signed.",
   },
 ];
 
-const whoWeLendTo = [
-  "UK limited companies and LLPs",
-  "A trading business bank account the directors can connect",
-  "Directors who want a fast, fair answer rather than a long process",
-  "Short-term working capital, not consumer credit",
+const terms = [
+  { k: "Who", v: "UK limited companies and LLPs with a trading business bank account" },
+  { k: "Decision", v: "Online, in real time, from the business's own bank data" },
+  { k: "Rate", v: "Fixed for the whole term. The number does not move." },
+  { k: "Fee", v: "£150, flat. There are no other charges." },
+  { k: "Early repayment", v: "£0. Repay early and you stop paying interest; that is all." },
+  { k: "If a payment is missed", v: "What happens next is written in the agreement before you sign, in plain English." },
+  { k: "What we do not do", v: "Consumer credit, or long processes." },
 ];
 
-const whatClientsGet = [
-  "A decision in minutes, online, with the working shown",
-  "A fixed rate for the term: the number does not move",
-  "One flat £150 fee, and nothing to pay for early repayment",
-  "A plain-English agreement that says up front what happens if a payment is missed",
-];
-
-const brokerBenefits = [
+const brokerPoints = [
   {
-    icon: Zap,
     title: "An answer while the client is still on the phone",
-    body: "Real-time decisions mean you are not waiting days for an underwriter to come back to you.",
+    body: "Real-time decisions. You are not waiting days for an underwriter to come back.",
   },
   {
-    icon: ListChecks,
-    title: "Clear criteria, no surprises",
-    body: "We say the number up front. If we cannot lend, you hear that in minutes too, with the reason.",
+    title: "A clear no, fast",
+    body: "If we cannot lend, you hear that in minutes as well, with the reason.",
   },
   {
-    icon: FileText,
     title: "A contract your clients can read",
     body: "Short sentences, no tricks. Fewer questions back to you after signing.",
   },
   {
-    icon: Handshake,
-    title: "Direct access to the founders",
-    body: "We are a small, agent-run lender. Partner brokers deal with the people who make the decisions.",
+    title: "Founders on the other end",
+    body: "We are a small, agent-run lender. Partner brokers deal directly with the people who make the decisions.",
   },
 ];
 
 const team = [
   {
-    initials: "RK",
     name: "Ricky Knox",
-    role: "Co-founder · Credit, capital and regulation",
+    role: "Co-founder · credit, capital, regulation",
     bio: "Fintech founder and operator. Previously Tandem, Azimo, Small World and Prosper.",
     linkedin: "https://www.linkedin.com/in/rickyknox/",
   },
   {
-    initials: "NZ",
     name: "Noam Zeigerson",
-    role: "Co-founder · Technology and the agents",
+    role: "Co-founder · technology and the agents",
     bio: "Serial entrepreneur building AI businesses since 2012. Built banking systems for Barclays, Bank Hapoalim and Tandem.",
     linkedin: "https://www.linkedin.com/in/noamzeigerson/",
   },
@@ -94,226 +77,190 @@ const team = [
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
-      <Header />
+    <main>
+      <Topbar />
 
       {/* Hero */}
-      <section className="relative pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden">
-        <div className="absolute inset-0 -z-10">
-          <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full bg-primary/5 blur-3xl" />
-          <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-accent/5 blur-3xl" />
-        </div>
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-3xl text-center">
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
-              </span>
-              Lending through partner brokers only
-            </div>
-            <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl md:text-6xl lg:text-7xl text-balance">
-              Business loans decided in minutes.{" "}
-              <span className="text-primary">Funded in a flash.</span>
+      <section className="mx-auto max-w-6xl px-6 pb-20 pt-16 md:pt-24 lg:px-8">
+        <div className="grid items-start gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
+          <div className="min-w-0">
+            <p className="eyebrow text-ink-2">Business lending · UK limited companies</p>
+            <h1 className="mt-5 font-display text-5xl leading-[0.98] tracking-tight text-ink sm:text-6xl md:text-7xl">
+              A lending decision in minutes, <em className="text-forest">not weeks.</em>
             </h1>
-            <p className="mt-6 text-lg leading-relaxed text-muted-foreground md:text-xl text-pretty">
-              Olyndra is an AI-run lender for UK limited companies. We read the
-              business&apos;s bank data, give a real-time online decision and
-              pay out fast, with a fixed rate, one flat fee and an agreement
-              written in plain English.
+            <p className="mt-7 max-w-xl text-lg leading-relaxed text-ink-2">
+              We read the business&apos;s own bank data and decide online, in real
+              time. One fixed rate for the term, one flat fee, and an agreement
+              written so a director can read it in one sitting.
             </p>
-            <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
               <Link
-                href="#partner"
-                className="w-full sm:w-auto rounded-xl bg-primary px-8 py-4 text-base font-semibold text-primary-foreground shadow-lg shadow-primary/25 hover:opacity-90 transition-all hover:shadow-xl hover:shadow-primary/30"
+                href="#brokers"
+                className="bg-amber px-6 py-3 text-center text-base font-semibold text-ink transition-colors hover:bg-amber-2"
               >
-                Partner with us
+                Become a partner broker
               </Link>
               <Link
-                href="#how-it-works"
-                className="w-full sm:w-auto rounded-xl bg-card border border-border px-8 py-4 text-base font-semibold text-foreground hover:bg-muted transition-colors"
+                href="#how"
+                className="border border-ink px-6 py-3 text-center text-base font-semibold text-ink transition-colors hover:bg-ink hover:text-bone"
               >
-                How it works
+                See how it works
               </Link>
             </div>
-            <p className="mt-8 text-sm text-muted-foreground text-pretty">
+            <div className="mt-9 border-l-2 border-amber pl-4 text-sm leading-relaxed text-ink-2">
               We are not taking applications directly from businesses at the
               moment. New customers come to us through our partner brokers.
               Existing customers can{" "}
-              <Link href="/sign-in" className="font-medium text-primary hover:underline">
+              <Link href="/sign-in" className="font-medium text-ink underline underline-offset-4">
                 sign in here
               </Link>
               .
-            </p>
+            </div>
           </div>
-
-          <div className="mt-20 grid grid-cols-2 gap-6 md:grid-cols-4 md:gap-8">
-            {stats.map((s) => (
-              <div
-                key={s.label}
-                className="rounded-2xl bg-card border border-border p-6 text-center shadow-sm"
-              >
-                <p className="text-3xl font-bold text-primary md:text-4xl">{s.value}</p>
-                <p className="mt-2 text-sm text-muted-foreground">{s.label}</p>
-              </div>
-            ))}
+          <div className="min-w-0 lg:pt-8">
+            <DecisionTicket />
+            <p className="mt-4 font-mono text-xs text-ink-2">
+              Illustrative. Timings and figures are an example, not a quote.
+            </p>
           </div>
         </div>
       </section>
+
+      {/* Facts strip */}
+      <div className="border-y border-line-forest bg-forest text-bone">
+        <ul className="mx-auto flex max-w-6xl flex-wrap gap-x-10 gap-y-3 px-6 py-4 font-mono text-xs uppercase tracking-[0.14em] lg:px-8">
+          {facts.map((f) => (
+            <li key={f} className="flex items-center gap-3">
+              <span className="h-1.5 w-1.5 bg-amber" aria-hidden="true" />
+              {f}
+            </li>
+          ))}
+        </ul>
+      </div>
 
       {/* How it works */}
-      <section id="how-it-works" className="py-20 md:py-32 bg-muted/30 scroll-mt-16">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl text-balance">
-              Decided online, in real time
+      <section id="how" className="scroll-mt-20 border-b border-line">
+        <div className="mx-auto grid max-w-6xl gap-10 px-6 py-20 md:py-28 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16 lg:px-8">
+          <div>
+            <p className="eyebrow text-ink-2">How it works</p>
+            <h2 className="mt-4 font-display text-4xl leading-tight text-ink md:text-5xl">
+              Three steps. One sitting.
             </h2>
-            <p className="mt-4 text-lg text-muted-foreground text-pretty">
-              Three steps, one sitting. The decision is made from the business&apos;s
-              own bank data, and we show the working.
+            <p className="mt-5 max-w-sm text-ink-2 leading-relaxed">
+              The decision is made from the business&apos;s own numbers, and we
+              show the working rather than hide it behind a scorecard.
             </p>
           </div>
-          <div className="mt-16 grid gap-8 md:grid-cols-3">
-            {steps.map((step) => (
-              <div
-                key={step.title}
-                className="group relative rounded-2xl bg-card border border-border p-8 shadow-sm transition-all hover:shadow-lg hover:border-primary/20"
-              >
-                <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
-                  <step.icon className="h-7 w-7" aria-hidden="true" />
+          <ol className="divide-y divide-line border-y border-line">
+            {steps.map((s) => (
+              <li key={s.n} className="grid gap-4 py-7 sm:grid-cols-[4rem_1fr]">
+                <span className="font-mono text-2xl text-forest">{s.n}</span>
+                <div className="min-w-0">
+                  <h3 className="font-display text-2xl text-ink">{s.title}</h3>
+                  <p className="mt-2 leading-relaxed text-ink-2">{s.body}</p>
                 </div>
-                <h3 className="text-xl font-semibold text-foreground">{step.title}</h3>
-                <p className="mt-3 text-muted-foreground leading-relaxed">{step.body}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      {/* Terms */}
+      <section id="terms" className="scroll-mt-20 bg-bone-2">
+        <div className="mx-auto max-w-6xl px-6 py-20 md:py-28 lg:px-8">
+          <div className="max-w-2xl">
+            <p className="eyebrow text-ink-2">What we say up front</p>
+            <h2 className="mt-4 font-display text-4xl leading-tight text-ink md:text-5xl">
+              The terms, in one table.
+            </h2>
+            <p className="mt-5 text-ink-2 leading-relaxed">
+              Everything a broker needs to tell a client before they connect
+              their account. Nothing here changes after the decision.
+            </p>
+          </div>
+          <dl className="mt-12 border-t border-ink">
+            {terms.map((t) => (
+              <div
+                key={t.k}
+                className="grid gap-2 border-b border-line py-5 sm:grid-cols-[12rem_1fr] sm:gap-8"
+              >
+                <dt className="eyebrow pt-1 text-forest">{t.k}</dt>
+                <dd className="text-lg leading-relaxed text-ink">{t.v}</dd>
               </div>
             ))}
-          </div>
+          </dl>
         </div>
       </section>
 
-      {/* Who we lend to / what clients get */}
-      <section className="py-20 md:py-32">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="grid gap-8 lg:grid-cols-2">
-            <div className="rounded-2xl bg-card border border-border p-8 shadow-sm md:p-10">
-              <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-                Who we lend to
-              </h2>
-              <ul className="mt-6 space-y-4">
-                {whoWeLendTo.map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-muted-foreground leading-relaxed">
-                    <span className="mt-1 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
-                      <Check className="h-3.5 w-3.5" aria-hidden="true" />
-                    </span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="rounded-2xl bg-card border border-border p-8 shadow-sm md:p-10">
-              <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-                What your clients get
-              </h2>
-              <ul className="mt-6 space-y-4">
-                {whatClientsGet.map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-muted-foreground leading-relaxed">
-                    <span className="mt-1 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
-                      <Check className="h-3.5 w-3.5" aria-hidden="true" />
-                    </span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* For brokers */}
-      <section id="partner" className="py-20 md:py-32 bg-muted/30 scroll-mt-16">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center">
-            <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary">
-              Now onboarding partner brokers
-            </div>
-            <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl text-balance">
-              Partner with Olyndra
+      {/* Brokers */}
+      <section id="brokers" className="scroll-mt-20 bg-forest text-bone">
+        <div className="mx-auto grid max-w-6xl gap-12 px-6 py-20 md:py-28 lg:grid-cols-[1fr_1fr] lg:gap-16 lg:px-8">
+          <div className="min-w-0">
+            <p className="eyebrow text-moss">For brokers</p>
+            <h2 className="mt-4 font-display text-4xl leading-tight md:text-5xl">
+              We lend through you.
             </h2>
-            <p className="mt-4 text-lg text-muted-foreground text-pretty">
+            <p className="mt-5 max-w-md leading-relaxed text-moss">
               We work with a small number of commercial finance brokers who want
               a fast, honest answer for their clients. Here is what that looks
-              like.
+              like in practice.
             </p>
+            <ul className="mt-10 space-y-7">
+              {brokerPoints.map((p) => (
+                <li key={p.title} className="grid grid-cols-[1.25rem_1fr] gap-4">
+                  <span className="mt-2 h-2 w-2 bg-amber" aria-hidden="true" />
+                  <div className="min-w-0">
+                    <h3 className="text-lg font-semibold text-bone">{p.title}</h3>
+                    <p className="mt-1 leading-relaxed text-moss">{p.body}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
           </div>
-          <div className="mt-16 grid gap-8 sm:grid-cols-2">
-            {brokerBenefits.map((b) => (
-              <div
-                key={b.title}
-                className="group relative rounded-2xl bg-card border border-border p-8 shadow-sm transition-all hover:shadow-lg hover:border-primary/20"
-              >
-                <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
-                  <b.icon className="h-7 w-7" aria-hidden="true" />
-                </div>
-                <h3 className="text-xl font-semibold text-foreground">{b.title}</h3>
-                <p className="mt-3 text-muted-foreground leading-relaxed">{b.body}</p>
-              </div>
-            ))}
-          </div>
-          <div className="mx-auto mt-16 max-w-2xl">
-            <div className="rounded-3xl bg-card border border-border p-8 shadow-xl md:p-12">
-              <div className="text-center">
-                <h3 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl text-balance">
-                  Tell us about your firm
-                </h3>
-                <p className="mt-4 text-lg text-muted-foreground">
-                  Leave your details and one of the founders will come back to
-                  you directly.
-                </p>
-              </div>
-              <PartnerForm />
-            </div>
+          <div className="min-w-0 border border-line-forest bg-bone p-6 text-ink md:p-8">
+            <p className="eyebrow text-ink-2">Partner enquiry</p>
+            <h3 className="mt-2 font-display text-3xl text-ink">Tell us about your firm</h3>
+            <p className="mt-2 mb-7 text-ink-2">
+              One of the founders will come back to you directly.
+            </p>
+            <PartnerForm />
           </div>
         </div>
       </section>
 
       {/* Team */}
-      <section id="team" className="py-20 md:py-32 scroll-mt-16">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl text-balance">
-              The founding team
-            </h2>
-            <p className="mt-4 text-lg text-muted-foreground text-pretty">
-              Two founders, a team of AI agents, and a track record in building
-              banks and lenders. More about us on LinkedIn.
-            </p>
-          </div>
-          <div className="mx-auto mt-16 grid max-w-4xl gap-8 md:grid-cols-2">
-            {team.map((person) => (
-              <div
-                key={person.name}
-                className="rounded-2xl bg-card border border-border p-8 shadow-sm transition-all hover:shadow-lg hover:border-primary/20"
-              >
-                <div className="flex items-center gap-4">
-                  <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-lg font-bold text-primary">
-                    {person.initials}
+      <section id="team" className="scroll-mt-20">
+        <div className="mx-auto max-w-6xl px-6 py-20 md:py-28 lg:px-8">
+          <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+            <div>
+              <p className="eyebrow text-ink-2">The founders</p>
+              <h2 className="mt-4 font-display text-4xl leading-tight text-ink md:text-5xl">
+                Two people and a team of agents.
+              </h2>
+              <p className="mt-5 max-w-sm leading-relaxed text-ink-2">
+                Between them, a track record in building banks and lenders. More
+                about each of us on LinkedIn.
+              </p>
+            </div>
+            <div className="divide-y divide-line border-y border-line">
+              {team.map((p) => (
+                <div key={p.name} className="grid gap-3 py-7 sm:grid-cols-[1fr_auto] sm:gap-8">
+                  <div className="min-w-0">
+                    <h3 className="font-display text-3xl text-ink">{p.name}</h3>
+                    <p className="eyebrow mt-2 text-forest">{p.role}</p>
+                    <p className="mt-3 leading-relaxed text-ink-2">{p.bio}</p>
                   </div>
-                  <div>
-                    <h3 className="text-xl font-semibold text-foreground">{person.name}</h3>
-                    <p className="text-sm text-muted-foreground">{person.role}</p>
-                  </div>
+                  <a
+                    href={p.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="self-start whitespace-nowrap border border-ink px-4 py-2 text-sm font-semibold text-ink transition-colors hover:bg-ink hover:text-bone"
+                  >
+                    LinkedIn ↗
+                  </a>
                 </div>
-                <p className="mt-5 text-muted-foreground leading-relaxed">{person.bio}</p>
-                <a
-                  href={person.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline"
-                >
-                  <Linkedin className="h-4 w-4" aria-hidden="true" />
-                  View on LinkedIn
-                </a>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>

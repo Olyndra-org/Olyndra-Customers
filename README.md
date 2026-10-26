@@ -1,8 +1,8 @@
-# Olyndra broker site (olyndra.com)
+# Olyndra Lending (olyndra.com)
 
-Broker-facing lender site for Olyndra. Built with the same stack as olyndra.ai:
-Next.js 15 (App Router, Turbopack), React 19, Tailwind CSS v4 with the same
-shadcn-style theme tokens, Geist font, lucide-react icons, Vercel Analytics.
+Broker-facing lender site for Olyndra, with its own visual identity separate from olyndra.ai.
+Stack: Next.js 15 (App Router, Turbopack), React 19, Tailwind CSS v4, Google Fonts via next/font
+(Instrument Serif, IBM Plex Sans, IBM Plex Mono), Vercel Analytics. No icon library.
 
 ## Run locally
 
@@ -15,23 +15,22 @@ Open http://localhost:3000.
 
 ## Pages
 
-- `/` — lender landing page for brokers (how it works, who we lend to, broker partnership form, founding team)
+- `/` — landing page: hero with example decision log, facts strip, how it works, terms table,
+  broker section with enquiry form, founders
 - `/sign-in` — placeholder customer sign-in (customer ID + password; the form does nothing yet)
 
-## Deploy next to olyndra.ai (Vercel)
+## Deploy (Vercel)
 
-1. Push this folder to a new GitHub repo (e.g. `olyndra-brokers`).
-2. In Vercel: **Add New → Project**, import the repo, keep the defaults (framework: Next.js) and deploy.
-3. In the project's **Settings → Domains**, add `olyndra.com` and `www.olyndra.com`.
-   Vercel shows the DNS records to add at your registrar (an `A` record for the apex
-   and a `CNAME` for `www`, or nameservers if you prefer). Pick one as the redirect target.
-4. The site uses the same Web3Forms key as olyndra.ai for the broker enquiry form, so
-   enquiries land in the same inbox. Change `WEB3FORMS_ACCESS_KEY` in
-   `components/partner-form.tsx` if you want a separate key.
+1. Push this folder to a new GitHub repo.
+2. In Vercel: **Add New → Project**, import the repo, keep the defaults (framework: Next.js), deploy.
+3. **Settings → Domains**: add `olyndra.com` and `www.olyndra.com` and set the DNS records Vercel shows.
+4. The broker enquiry form uses the same Web3Forms key as olyndra.ai, so enquiries land in the
+   same inbox. Change `WEB3FORMS_ACCESS_KEY` in `components/partner-form.tsx` for a separate one.
 
-## Things to edit
+## Where things live
 
-- Copy and section content: `app/page.tsx`
-- Theme tokens (colours, radius): `app/globals.css`
-- Header links / footer: `components/header.tsx`, `components/footer.tsx`
-- Metadata (title, description, Open Graph): `app/layout.tsx`
+- Copy and sections: `app/page.tsx`
+- Colours, fonts, utilities: `app/globals.css` (tokens) and `app/layout.tsx` (fonts)
+- Logo mark: `components/wordmark.tsx` and `public/icon.svg`
+- Header / footer: `components/topbar.tsx`, `components/footer.tsx`
+- Example decision log in the hero: `components/decision-ticket.tsx`
